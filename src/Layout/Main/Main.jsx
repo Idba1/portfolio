@@ -1,20 +1,42 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
+import { FaHome } from "react-icons/fa";
+import { MdEvent, MdOutlineCloudDone, MdOutlineCreateNewFolder } from "react-icons/md";
+import { NavLink, Outlet } from "react-router-dom";
 
-
-const Main = () => {
+const CreatorDashboard = () => {
+    
     return (
-        <div className="container  mx-auto">
-            <Navbar></Navbar>
-            <div className=" min-h-[calc(100vh-250px)] mt-20 " >
-                <Outlet ></Outlet>
+        <div className="flex">
+            {/* dashboard side bar */}
+            <div className="w-64 min-h-screen  text-white">
+                <ul className="menu p-4 text-xl">
+                    <li>
+                        <NavLink to="/">
+                        <FaHome/>
+                            Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/creator-dashboard/add-contest">
+                        <MdEvent />
+                            Add Contest</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/creator-dashboard/my-created-contest">
+                        <MdOutlineCreateNewFolder />
+                            Create Contest</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/creator-dashboard/contest-submitted">
+                        <MdOutlineCloudDone />
+                            Submit Contest</NavLink>
+                    </li>
+                </ul>
             </div>
-            <div className="mt-4 md:mt-6 lg:mt-12">
-                <Footer></Footer>
+            {/* dashboard content */}
+            <div className="flex-1 p-8">
+                <Outlet></Outlet>
             </div>
         </div>
     );
 };
 
-export default Main;
+export default CreatorDashboard;
